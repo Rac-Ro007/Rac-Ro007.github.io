@@ -7,8 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>It's About Me</title>
+  <title>Ronak Vadhaiya</title>
+  <meta name="description" content="Software Engineer, Software Developer, Freelancer">
+  <meta name="keywords" content="Python Developer, Django, Java, React JS, MERN Stack, Node JS, HTML, CSS, JavaScript">
+  <meta name="author" content="Ronak Vadhaiya">
+  <link rel="stylesheet" href="css/index.css">
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="img/py.jpg"/>
   <!-- Bootstrap core CSS -->
@@ -26,10 +29,12 @@
 </head>
 
 <body id="page-top">
-
+  <div id="loading">
+      <div id="spinner"></div>
+  </div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
-      <span class="d-block d-lg-none">Clarence Taylor</span>
+      <span class="d-block d-lg-none">Ronak Vadhaiya</span>
       <span class="d-none d-lg-block">
         <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/profile.jpg" alt="">
       </span>
@@ -39,6 +44,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="https://drive.google.com/file/d/18rymASyMEQVzGXZkLSR7gpxGWOMrIuGq/view?usp=sharing">Resume</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#about">About</a>
         </li>
@@ -62,28 +70,41 @@
   </nav>
 
   <div class="container-fluid p-0">
-
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
+     <div class="night">
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+    </div>
+    <section class=" about resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
       <div class="w-100">
-        <h1 class="mb-0">Ronak
-          <span class="text-primary">Vadhaiya</span>
-        </h1>
+        <h2 class="mb-0 text-primary">Hey, I'm
+        </h2>
+        <h2>
+        <a style="color:orange ! important" href="" class="typewrite" data-period="2000" data-type='[ "Ronak Vadhaiya", "a Developer", "a CS Graduate","and a FreeLancer" ]'>
+          <span class="wrap"></span>
+        </a>
+      </h2>
         <div class="subheading mb-5">Mumbai, Maharashtra, India·
-          <a href="mailto:ronakvadhaiya77@gmail.com">ronakvadhaiya77@gmail.com</a>
         </div>
         <p class="lead mb-5" align="justify">I'm currently an undergrad student in the Department of Computer Science at K.J Somaiya College Of Engineering , Mumbai. I have always looked on academics as an interesting and critical aspect of my growing up abilities and skills. In past year, I spent most of my time working on projects, applying for internship in various sectors and completing various courses on Machine Learning and Blockchain. I'm currently exploring the field of AI, Blockchain, Big-Data, which seems fascinating to me. I like to work on small projects during weekends to improve my skills and take part in programming contest and Hackathons regularly.</p>
         <div class="social-icons">
-          <a href="https://www.linkedin.com/in/ronak-vadhaiya-66166a180/">
+          <a href="https://www.linkedin.com/in/ronakvadhaiya/">
             <i class="fab fa-linkedin-in"></i>
           </a>
           <a href="https://github.com/Rac-Ro007">
             <i class="fab fa-github"></i>
           </a>
-          <a href="#">
+          <!-- <a href="#">
             <i class="fab fa-twitter"></i>
-          </a>
+          </a> -->
           <a href="https://www.facebook.com/ronak.vadhaiya?ref=bookmarks">
             <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="mailto:ronakvadhaiya77@gmail.com">
+            <i class="fas fa-envelope"></i>
           </a>
         </div>
       </div>
@@ -287,13 +308,105 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+  var TxtType = function(el, toRotate, period) {
+        this.toRotate = toRotate;
+        this.el = el;
+        this.loopNum = 0;
+        this.period = parseInt(period, 10) || 2000;
+        this.txt = '';
+        this.tick();
+        this.isDeleting = false;
+    };
 
+    TxtType.prototype.tick = function() {
+        var i = this.loopNum % this.toRotate.length;
+        var fullTxt = this.toRotate[i];
+
+        if (this.isDeleting) {
+        this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+        this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+
+        this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+        var that = this;
+        var delta = 200 - Math.random() * 100;
+
+        if (this.isDeleting) { delta /= 2; }
+
+        if (!this.isDeleting && this.txt === fullTxt) {
+        delta = this.period;
+        this.isDeleting = true;
+        } else if (this.isDeleting && this.txt === '') {
+        this.isDeleting = false;
+        this.loopNum++;
+        delta = 500;
+        }
+
+        setTimeout(function() {
+        that.tick();
+        }, delta);
+    };
+
+    window.onload = function() {
+        var elements = document.getElementsByClassName('typewrite');
+        for (var i=0; i<elements.length; i++) {
+            var toRotate = elements[i].getAttribute('data-type');
+            var period = elements[i].getAttribute('data-period');
+            if (toRotate) {
+              new TxtType(elements[i], JSON.parse(toRotate), period);
+            }
+        }
+        // INJECT CSS
+        var css = document.createElement("style");
+        css.type = "text/css";
+        css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+        document.body.appendChild(css);
+    };
+  </script>
   <!-- Plugin JavaScript -->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for this template -->
   <script src="js/resume.min.js"></script>
-
+  <script type="text/javascript">
+        setTimeout(function() {
+          document.getElementById("loading").classList.add("animated");
+          document.getElementById("loading").classList.add("fadeOut");
+          setTimeout(function() {
+            document.getElementById("loading").classList.remove("animated");
+            document.getElementById("loading").classList.remove("fadeOut");
+            document.getElementById("loading").style.display = "none";
+          }, 800);
+        }, 1500);
+        $.getJSON("blog.json", function(blog) {
+          blog = blog || [];
+          if (blog.length == 0) {
+            return (document.getElementById("blog_section").style.display =
+              "none");
+          }
+          for (var i = 0; i < blog.length; i++) {
+            $("#blogs").append(`
+              <a href="./blog/${blog[i].url_title}/" target="_blank">
+                  <section>
+                      <img src="./blog/${blog[i].url_title}/${blog[i].top_image}">
+                      <div class="blog_container">
+                          <div class="section_title">${blog[i].title}</div>
+                          <div class="about_section">
+                              ${blog[i].sub_title}
+                          </div>
+                      </div>
+                  </section>
+              </a>
+              `);
+          }
+        }).fail(function() {
+          return (document.getElementById("blog_section").style.display = "none");
+        });
+      </script>
+    <script>
 </body>
 
 </html>
