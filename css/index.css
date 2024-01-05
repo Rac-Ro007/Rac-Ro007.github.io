@@ -460,6 +460,9 @@ body {
   margin-left: 5vw;
   margin-top: 4vh;
 }
+#skill-img {
+  width: "50%";
+}
 
 ::selection {
   color: var(--bg-color);
@@ -475,6 +478,10 @@ body {
     text-align: center;
     position: relative;
     background: var(--background-image) left 60% center;
+  }
+
+  #skill-img {
+    width: "100%";
   }
 
   #display {
